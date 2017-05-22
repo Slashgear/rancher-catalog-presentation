@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Rancher Catalog</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -20,11 +20,33 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+			body {
+				font-family: Leto, sans-serif;
+			}
+			.first, .first h1, .first h2 {
+				background-color: white;
+				color: black
+			}
+			.reveal h1 {
+				font-size: 1.7em;
+			}
+			.reveal h2 {
+				font-size: 1.2em;
+				font-weight: 200;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
+				<section class="first">
+					<img src="img/rancher_logo.jpg" alt="logo rancher">
+					<h1>Rancher Catalog</h1>
+					<h2>Antoine CARON 24/05/17 Paris</h2>
+					<p><a href="//twitter.com/Slashgear_">@Slashgear_</a></p>
+					<p><a href="//slashgear.github.io">http://slashgear.github.io</a></p>
+				</section>
 				<section>Slide 2</section>
 			</div>
 		</div>
