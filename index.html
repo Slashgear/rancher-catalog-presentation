@@ -22,10 +22,9 @@
 		</script>
 		<style>
 			body {
-				font-family: Leto, sans-serif;
+				background-color: white;
 			}
 			.first, .first h1, .first h2 {
-				background-color: white;
 				color: black
 			}
 			.reveal h1 {
@@ -35,19 +34,144 @@
 				font-size: 1.2em;
 				font-weight: 200;
 			}
+			.reveal section img {
+				box-shadow: none;
+			}
+			.reveal section {
+				color: white;
+			}
+			.reveal h1,
+			.reveal h2,
+			.reveal h3,
+			.reveal h4,
+			.reveal h5,
+			.reveal h6 {
+				font-family: Leto, sans-serif;
+			}
+			.row {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section class="first">
+				<section class="first" data-background="#006CAA">
 					<img src="img/rancher_logo.jpg" alt="logo rancher">
 					<h1>Rancher Catalog</h1>
 					<h2>Antoine CARON 24/05/17 Paris</h2>
 					<p><a href="//twitter.com/Slashgear_">@Slashgear_</a></p>
 					<p><a href="//slashgear.github.io">http://slashgear.github.io</a></p>
 				</section>
-				<section>Slide 2</section>
+				<section data-background="#006CAA">
+					<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/PiIUI-yDbQc?ecver=2&loop=1" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+				</section>
+				<section data-background="#006CAA">
+					<h1>Demo stack</h1>
+					<p>Web server in Go</p>
+					<p><a href="https://github.com/Slashgear/go-server-example" target="_blank">https://github.com/Slashgear/go-server-example</a></p>
+					<p>Custom parameters for RGB color and text</p>
+				</section>
+				<section data-background="#006CAA">
+					<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/0RgvqCsWEZM?ecver=2&loop=1" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+				</section>
+				<section data-background="#006CAA">
+					<section data-background="#006CAA">
+						<h1>Entry creation</h1>
+					</section>
+					<section data-background="#006CAA">
+						<h3>Step 1 : get configuration on rancher</h3>
+						<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/4YvIDkQhS8I?ecver=2&loop=1" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+					</section>
+					<section data-background="#006CAA" data-markdown>
+						<h3>Step 2 : create git repository</h3>
+						```
+						-- templates (Or any of templates folder)
+							|-- cloudflare
+							|   |-- 0
+							|   |   |-- docker-compose.yml
+							|   |   |-- rancher-compose.yml
+							|   |-- 1
+							|   |   |-- docker-compose.yml
+							|   |   |-- rancher-compose.yml
+							|   |-- catalogIcon-cloudflare.svg
+							|   |-- config.yml
+    					```
+					</section>
+					<section data-background="#006CAA">
+						<p><a href="https://github.com/Slashgear/rancher-go-color" target="_blank">https://github.com/Slashgear/rancher-go-color</a></p>
+					</section>
+					<section data-background="#006CAA">
+						<h3>Add git repository in Rancher</h3>
+						<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/cU199yM2deA?ecver=2&loop=1" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+					</section>
+					<section data-background="#006CAA">
+						<h3>Let's try this</h3>
+						<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/eMW-10B_Y-g?ecver=2&loop=1" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+					</section>
+				</section>
+				<section data-background="#006CAA">
+					<section data-background="#006CAA">
+						<h1>Question on entries</h1>
+						<p>Allowed type questions :</p>
+						<p>string, int, boolean, password, service, enum, multiline, certificate</p>
+					</section>
+					<section data-background="#006CAA">
+						<h3>Let's add questions</h3>
+						<p>Add question for port mapping</p>
+						<p class="fragment fade-up" data-markdown>
+							```
+							.catalog:
+								name: GoColor
+								version: 0.1.0
+								description:  Example of go color 
+								uuid: gocolor-0
+								minimum_rancher_version: v0.56.0
+								questions:
+									- variable: port
+									label: port
+									description: Port to show
+									default: 80
+									required: true
+									type: int
+							```
+						</p>
+					</section>
+					<section data-background="#006CAA">
+						<p data-markdown>
+							```
+							version: '2'
+							services:
+								ServerGoColor:
+									image: slashgear/go-server-example
+									stdin_open: true
+									tty: true
+									ports:
+										- 80:${port}/tcp
+									labels:
+										io.rancher.container.pull_image: always
+							```
+						</p>
+					</section>
+					<section>
+						<h3>More complete example</h3>
+						<a href="https://github.com/Slashgear/rancher-go-color/blob/question/templates/ranchergocolor/0/rancher-compose.yml">Click Me!</p>
+					</section>
+				</section>
+				<section data-background="#006CAA">
+					<section data-background="#006CAA">
+						<h1>Generator</h1>
+						<p>Generate config files structures to avoid errors.</p>
+					</section>
+					<section data-background="#006CAA">
+						<a href="https://asciinema.org/a/8auqcsp7l7sibenx2wihasdm3" target="_blank"><img src="https://asciinema.org/a/8auqcsp7l7sibenx2wihasdm3.png" /></a>					</section>
+					</section>
+				</section>
+				<section data-background="#006CAA">
+					<h1>Thanks</h1>
+				</section>
 			</div>
 		</div>
 
